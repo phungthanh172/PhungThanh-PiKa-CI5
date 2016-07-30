@@ -35,10 +35,11 @@ public class GameWindow extends Frame implements Runnable {
     ArrayList<Enemy> listEnemy = new ArrayList<Enemy>();
     Random r = new Random();
     AddEnemy ae;
+
     class AddEnemy extends Thread {
         @Override
         public void run() {
-            while(true) {
+            while (true) {
                 listEnemy.add(new Enemy(r.nextInt(400) + 50, 0));
                 try {
                     sleep(1000);
@@ -48,6 +49,7 @@ public class GameWindow extends Frame implements Runnable {
             }
         }
     }
+
     public GameWindow() {
         ae = new AddEnemy();
         plane1 = new Plane(270, 600);
@@ -197,39 +199,61 @@ public class GameWindow extends Frame implements Runnable {
         }
         graphics.drawImage(bufferedImage, 0, 0, null);
     }
-///listEnemy.add(new Enemy(r.nextInt(400)+50, 0));
+
+    ///listEnemy.add(new Enemy(r.nextInt(400)+50, 0));
     @Override
     public void run() {
+        int leftSideBullet;
+        int rightSideBullet;
+        int leftSidePlane;
+        int rightSidePlane;
+        int distance;
         while (true) {
             try {
                 thread.sleep(27);
-                Iterator<Enemy> enemyPlaneIterator = listEnemy.iterator();
-                Enemy enemy;
-                while (enemyPlaneIterator.hasNext()) {
-                    enemy = enemyPlaneIterator.next();
-                    enemy.y += 7;
-                    if (enemy.y > 759) {
-                        enemyPlaneIterator.remove();
-                        break;
+                for (int i = 0; i < listEnemy.size(); i++) {
+                    if (listEnemy.get(i).y < 0 ||
+                            listEnemy.get(i).y > 800) {
+                        listEnemy.remove(i);
+                    } else {
+                        listEnemy.get(i).move( 0,  5);
                     }
                 }
-                Iterator<Bullet> bulletIterator = listBullet.iterator();
-                while (bulletIterator.hasNext()) {
-                    Bullet bullet = bulletIterator.next();
-                    bullet.y -= 10;
-                    if (bullet.y <= 0) {
-                        bulletIterator.remove();
+                for (int i = 0; i < listBullet.size(); i++) {
+                    if (listBullet.get(i).y < 0 ||
+                            listBullet.get(i).y > 800) {
+                        listBullet.remove(i);
+                    } else {
+                        listBullet.get(i).move( listBullet.get(i).dx,  listBullet.get(i).dy);
+
                     }
 
                 }
                 try {
-                    for (Enemy plane : listEnemy) {
-                        for (Bullet bullet : listBullet) {
-                            if (plane.y + 32 >= bullet.y && plane.y < bullet.y && plane.x < bullet.x && plane.x + 32 > bullet.x) {
-                                listBullet.remove(bullet);
-                                listEnemy.remove(plane);
+//                    for (Enemy plane : listEnemy) {
+//                        for (Bullet bullet : listBullet) {
+//                            if (plane.y + 32 >= bullet.y && plane.y < bullet.y && plane.x < bullet.x && plane.x + 32 > bullet.x) {
+//                                listBullet.remove(bullet);
+//                                listEnemy.remove(plane);
+//                                break;
+//                            }
+//                        }
+//                    }
+                    //CHECK EXPLOSION
+
+                    for (int i = 0; i < listBullet.size(); i++){
+                        leftSideBullet = listBullet.get(i).x - HAFT_LENGHT_BULLET;
+                        rightSideBullet = listBullet.get(i).x + HAFT_LENGHT_BULLET;
+                        for (int j = 0; j < listEnemy.size(); j++){
+                            leftSidePlane = listEnemy.get(j).x - HAFT_SIZE_ENEMY;
+                            rightSidePlane = listEnemy.get(j).x + HAFT_SIZE_ENEMY;
+                            distance = listBullet.get(i).y - listEnemy.get(j).y;
+                            if (rightSideBullet > leftSidePlane && leftSideBullet < rightSidePlane && distance < DISTANCE_ENOUGH && distance > - DISTANCE_ENOUGH){
+                                listBullet.remove(i);
+                                listEnemy.remove(j);
                                 break;
                             }
+
                         }
                     }
                 } catch (Exception e) {
@@ -244,5 +268,5 @@ public class GameWindow extends Frame implements Runnable {
         }
     }
 
-    }
+}
 
