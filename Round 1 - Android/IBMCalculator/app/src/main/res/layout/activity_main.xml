@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.khacthanh.ibmcalculator.MainActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etWeight"
+        android:layout_alignBaseline="@+id/tvWeight"
+        android:layout_alignBottom="@+id/tvWeight"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etHeight"
+        android:layout_below="@+id/tvWeight"
+        android:layout_alignLeft="@+id/etWeight"
+        android:layout_alignStart="@+id/etWeight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Height"
+        android:id="@+id/tvHeight"
+        android:layout_below="@+id/etWeight"
+        android:layout_alignLeft="@+id/tvWeight"
+        android:layout_alignStart="@+id/tvWeight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Weight"
+        android:id="@+id/tvWeight"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/tvNotice"
+        android:layout_toLeftOf="@+id/etWeight"
+        android:layout_toStartOf="@+id/etWeight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Enter Weight and Height HERE"
+        android:id="@+id/tvNotice"
+        android:layout_marginTop="14dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Kg"
+        android:id="@+id/tvKg"
+        android:layout_alignBaseline="@+id/etWeight"
+        android:layout_alignBottom="@+id/etWeight"
+        android:layout_toRightOf="@+id/etWeight"
+        android:layout_toEndOf="@+id/etWeight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Cm"
+        android:id="@+id/tcCm"
+        android:layout_alignBottom="@+id/tvHeight"
+        android:layout_toRightOf="@+id/etHeight"
+        android:layout_toEndOf="@+id/etHeight" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculator IBM"
+        android:id="@+id/btnCalculator"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/etHeight"
+        android:layout_toRightOf="@+id/txtNoticeIBM"
+        android:layout_toEndOf="@+id/txtNoticeIBM" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Your IBM:"
+        android:id="@+id/txtNoticeIBM"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/btnCalculator"
+        android:layout_alignLeft="@+id/tvHeight"
+        android:layout_alignStart="@+id/tvHeight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/tvResult"
+        android:layout_alignTop="@+id/txtNoticeIBM"
+        android:layout_toRightOf="@+id/txtNoticeIBM"
+        android:layout_toEndOf="@+id/txtNoticeIBM"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:enabled="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/tvResultNotice"
+        android:layout_below="@+id/txtNoticeIBM"
+        android:layout_alignLeft="@+id/txtNoticeIBM"
+        android:layout_alignStart="@+id/txtNoticeIBM"
+        android:layout_marginTop="19dp"
+        android:enabled="true" />
+</RelativeLayout>
